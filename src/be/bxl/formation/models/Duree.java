@@ -13,7 +13,7 @@ public class Duree {
         if(jour < 0 || heure < 0 || minute < 0 || seconde < 0) {
             throw new IllegalArgumentException("Durée invalide !");
         }
-        this.setTotalSeconde((jour * 86400); + (heure * 3600) + (minute * 60) + seconde);
+        this.setTotalSeconde((jour * 86400) + (heure * 3600) + (minute * 60) + seconde);
     }
     //endregion
 
