@@ -6,15 +6,14 @@ public class Duree {
 
     //region Constructors
     public Duree(int nbSeconde) {
-        this.totalSeconde = nbSeconde;
+        this.setTotalSeconde(nbSeconde);
     }
 
     public Duree(int jour, int heure, int minute, int seconde) {
-        if(jour < 0 || heure >= 24 || heure < 0 || minute >= 60 || minute < 0 || seconde >= 60 || seconde < 0) {
+        if(jour < 0 || heure < 0 || minute < 0 || seconde < 0) {
             throw new IllegalArgumentException("Durée invalide !");
         }
-
-        this.totalSeconde = (jour * 86400) + (heure * 3600) + (minute * 60) + seconde;
+        this.setTotalSeconde((jour * 86400); + (heure * 3600) + (minute * 60) + seconde);
     }
     //endregion
 
@@ -38,16 +37,31 @@ public class Duree {
     public int getSeconde() {
         return totalSeconde % 60;
     }
+
+    public String getDuree(){
+        return String.format("%s jour %s heure %sminute %s seconde",
+                getJour(), getHeure(), getMinute(), getSeconde());
+    }
     //endregion
 
+    //region Setters
+    private void setTotalSeconde(int seconde){
+        if(seconde<0){
+            throw new IllegalArgumentException("Les durées négatives ne sont pas gére!");
+        }
+        this.totalSeconde = seconde;
+    }
+    //endregion
 
     //region Methodes
-    public void subDuree(Duree aSoustraire){
-
+    public void addDuree(Duree aAjouter){
+        int valeur = this.getTotalSeconde() + aAjouter.getTotalSeconde();
+        this.setTotalSeconde(valeur);
     }
 
-    public void addDuree(Duree aAjouter){
-
+    public void subDuree(Duree aSoustraire){
+        int valeur = this.getTotalSeconde() - aSoustraire.getTotalSeconde();
+        this.setTotalSeconde(valeur);
     }
     //endregion
 
